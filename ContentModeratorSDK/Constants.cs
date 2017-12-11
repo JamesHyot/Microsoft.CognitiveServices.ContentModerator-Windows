@@ -75,6 +75,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
         #region Term Lists
         public const string TERMLIST_CREATE = "/termlists";
         public const string TERMLIST_UPDATE = "/termlists/{0}";
+        public const string TERMLIST_BULKUPDATE = "/termlists/{0}/BulkUpdate";
         public const string TERMLIST_REFRESHINDEX = "/termlists/{0}/RefreshIndex";
         public const string TERMLIST_GETALL = "/termlists";
         public const string TERMLIST_GETDETAIL = "/termlists/{0}";

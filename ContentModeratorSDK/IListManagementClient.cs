@@ -149,6 +149,14 @@ namespace Microsoft.CognitiveServices.ContentModerator
         Task<ListItemResult> TermListUpdateAsync(string listId, string name, string description, Dictionary<string, string> listMetaData);
 
         /// <summary>
+        /// Adds and/or deletes terms from the list
+        /// </summary>
+        /// <param name="listId"></param>
+        /// <param name="termBulkUpdate"></param>
+        /// <returns></returns>
+        Task<string> TermListBulkUpdateAsync(string listId, TermBulkUpdate termBulkUpdate);
+
+        /// <summary>
         /// Get ListId details.
         /// </summary>
         /// <param name="listId"></param>

@@ -297,6 +297,18 @@ namespace Microsoft.CognitiveServices.ContentModerator
                         Constants.HttpMethod.PUT);
         }
 
+        public async Task<string> TermListBulkUpdateAsync(string listId, TermBulkUpdate termBulkUpdate)
+        {
+            dynamic termBulkUpdateRequest = new ExpandoObject();
+            termBulkUpdateRequest.Add = termBulkUpdate.Add;
+            termBulkUpdateRequest.Delete = termBulkUpdate.Delete;
+
+            return
+                await
+                    InvokeAsync<ExpandoObject, string>(termBulkUpdateRequest,
+                        string.Format(Constants.TERMLIST_BULKUPDATE, listId), Constants.HttpMethod.POST);
+        }
+
         public async Task<ListItemResult> TermListDetailAsync(string listId)
         {  
             return
