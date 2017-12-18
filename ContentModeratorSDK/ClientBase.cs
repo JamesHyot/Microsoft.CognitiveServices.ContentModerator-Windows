@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -330,12 +331,17 @@ namespace Microsoft.CognitiveServices.ContentModerator
             byte[] data = null;
             if (requestBody != null && !(requestBody is Stream))
             {
-                if (contentType.Equals("application/json", StringComparison.InvariantCultureIgnoreCase))                {
+                if (contentType.Equals("application/json", StringComparison.InvariantCultureIgnoreCase))
+                {
                     JsonSerializerSettings settings = new JsonSerializerSettings();
                     settings.DateFormatHandling = DateFormatHandling.IsoDateFormat;
                     settings.ContractResolver = this.defaultResolver;
-                    data = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(requestBody, settings));                }                else                {
-                    data = System.Text.Encoding.UTF8.GetBytes(requestBody as string);                }
+                    data = System.Text.Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(requestBody, settings));
+                }
+                else
+                {
+                    data = System.Text.Encoding.UTF8.GetBytes(requestBody as string);
+                }
             }
 
             return data;
@@ -350,6 +356,13 @@ namespace Microsoft.CognitiveServices.ContentModerator
             WebException webException = exception as WebException;
             if (webException != null && webException.Response != null)
             {
+                var httpResponse = (HttpWebResponse) webException.Response;
+                if (httpResponse.StatusCode == HttpStatusCode.Ambiguous)
+                {
+                    // Term already exists in the list, do not throw exception
+                    return;
+                }
+
                 if (webException.Response.ContentType.ToLower().Contains("application/json"))
                 {
                     Stream stream = null;

@@ -177,6 +177,14 @@ namespace Microsoft.CognitiveServices.ContentModerator
                         Constants.HttpMethod.DELETE);
         }
 
+        #endregion
+
+        #endregion
+
+        #region TermAPI
+
+        #region TermAdd
+
         public async Task<string> TermAddAsync(string listId, string term, string language)
         {
             var metaData = new List<KeyValue>
@@ -247,6 +255,10 @@ namespace Microsoft.CognitiveServices.ContentModerator
                 await this.InvokeAsync<TermGetAllResult>(string.Format(Constants.TERM_GETALLIDS, listId), Constants.HttpMethod.GET, metaData);
         }
 
+        #endregion
+
+        #region TermLists
+
         public async Task<string> TermListRefreshIndexAsync(string listId, string language)
         {
             var metaData = new List<KeyValue>
@@ -258,7 +270,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
                 }
             };
 
-            await this.InvokeAsync<string>(string.Format(Constants.TERMLIST_REFRESHINDEX, listId), Constants.HttpMethod.POST,metaData);
+            await this.InvokeAsync<string>(string.Format(Constants.TERMLIST_REFRESHINDEX, listId), Constants.HttpMethod.POST, metaData);
 
             return string.Empty;
         }
@@ -271,7 +283,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
 
         public async Task<ListItemResult> TermListCreateAsync(string name, string description, Dictionary<string, string> listMetaData)
         {
-           dynamic termlistrequest = new ExpandoObject();
+            dynamic termlistrequest = new ExpandoObject();
             termlistrequest.Name = name;
             termlistrequest.Description = description;
             termlistrequest.Metadata = listMetaData;
@@ -310,14 +322,14 @@ namespace Microsoft.CognitiveServices.ContentModerator
         }
 
         public async Task<ListItemResult> TermListDetailAsync(string listId)
-        {  
+        {
             return
                 await this.InvokeAsync<ListItemResult>(string.Format(Constants.TERMLIST_GETDETAIL, listId),
                 Constants.HttpMethod.GET);
         }
 
         public async Task<string> TermListDeleteAsync(string listId)
-        {   
+        {
             return
                 await this.InvokeAsync<string>(string.Format(Constants.TERMLIST_DELETE, listId),
                         Constants.HttpMethod.DELETE);
@@ -329,9 +341,9 @@ namespace Microsoft.CognitiveServices.ContentModerator
 
         #region Private methods
 
-        
 
-        
+
+
 
 
         #endregion
