@@ -58,7 +58,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
         {
             this.Error = new ClientError()
             {
-                Code = HttpStatusCode.InternalServerError.ToString(),
+                StatusCode = HttpStatusCode.InternalServerError.ToString(),
                 Message = message
             };
         }
@@ -75,7 +75,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
 
             this.Error = new ClientError()
             {
-                Code = this.HttpStatus.ToString(),
+                StatusCode = this.HttpStatus.ToString(),
                 Message = message
             };
         }
@@ -90,7 +90,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
         {
             this.Error = new ClientError()
             {
-                Code = HttpStatusCode.InternalServerError.ToString(),
+                StatusCode = HttpStatusCode.InternalServerError.ToString(),
                 Message = message
             };
         }
@@ -109,7 +109,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
 
             this.Error = new ClientError()
             {
-                Code = errorCode,
+                StatusCode = errorCode,
                 Message = message
             };
         }
@@ -149,7 +149,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
             return new ClientException(
                          new ClientError()
                          {
-                             Code = ((int)HttpStatusCode.BadRequest).ToString(),
+                             StatusCode = ((int)HttpStatusCode.BadRequest).ToString(),
                              Message = message
                          },
                          HttpStatusCode.BadRequest);

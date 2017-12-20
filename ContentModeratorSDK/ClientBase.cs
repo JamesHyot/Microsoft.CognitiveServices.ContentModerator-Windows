@@ -356,13 +356,6 @@ namespace Microsoft.CognitiveServices.ContentModerator
             WebException webException = exception as WebException;
             if (webException != null && webException.Response != null)
             {
-                var httpResponse = (HttpWebResponse) webException.Response;
-                if (httpResponse.StatusCode == HttpStatusCode.Ambiguous)
-                {
-                    // Term already exists in the list, do not throw exception
-                    return;
-                }
-
                 if (webException.Response.ContentType.ToLower().Contains("application/json"))
                 {
                     Stream stream = null;

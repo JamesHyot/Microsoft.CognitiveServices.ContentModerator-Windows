@@ -43,7 +43,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
         /// <summary>
         /// Gets or sets error code in error entity.
         /// </summary>
-        public string Code
+        public string StatusCode
         {
             get;
             set;

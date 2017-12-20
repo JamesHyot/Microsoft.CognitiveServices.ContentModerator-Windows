@@ -270,7 +270,7 @@ namespace Microsoft.CognitiveServices.ContentModerator
                 }
             };
 
-            await this.InvokeAsync<string>(string.Format(Constants.TERMLIST_REFRESHINDEX, listId), Constants.HttpMethod.POST, metaData);
+            await this.InvokeAsync<ImageRefreshIndexResult>(string.Format(Constants.TERMLIST_REFRESHINDEX, listId), Constants.HttpMethod.POST, metaData);
 
             return string.Empty;
         }
